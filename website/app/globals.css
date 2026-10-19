@@ -497,3 +497,79 @@ body {
 .footer a:hover {
   color: var(--footer-hover);
 }
+
+/* Mobile Responsive Optimization */
+@media (max-width: 640px) {
+  .container {
+    padding: 1.75rem 1rem;
+  }
+  .logo {
+    font-size: 3rem;
+  }
+  .tagline {
+    font-size: 1rem;
+    margin-bottom: 1.75rem;
+    line-height: 1.5;
+  }
+  .screenshot {
+    margin-bottom: 1.75rem;
+  }
+  .mockup-body {
+    padding: 16px 14px;
+    font-size: 0.76rem;
+  }
+  .install-box {
+    padding: 1rem 1.15rem;
+    margin-bottom: 1.75rem;
+  }
+  .install-cmd {
+    font-size: 0.8rem;
+  }
+  .tabs-section {
+    gap: 0.5rem;
+    margin-bottom: 1.75rem;
+  }
+  .tab-pill {
+    padding: 0.45rem 0.75rem;
+    font-size: 0.76rem;
+  }
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+  .feature-card {
+    padding: 1rem 1.15rem;
+  }
+  .links {
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+  .footer {
+    margin-top: 2.5rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .container {
+    padding: 1.5rem 0.85rem;
+  }
+  .logo {
+    font-size: 2.5rem;
+  }
+  .tagline {
+    font-size: 0.92rem;
+  }
+  .mockup-body {
+    padding: 12px 10px;
+    font-size: 0.7rem;
+  }
+  .install-cmd {
+    font-size: 0.74rem;
+  }
+  .tab-pill {
+    padding: 0.38rem 0.65rem;
+    font-size: 0.72rem;
+  }
+}
+
