@@ -1,32 +1,44 @@
-import type { Metadata, Viewport } from "next";
-import "./globals.css";
-
-export const metadata: Metadata = {
-  title: "PULL — Extract complete source code and assets from any Vercel deployment",
-  description: "Snag full source code and assets from any Vercel deployment directly from your terminal or local web inspector.",
-  openGraph: {
-    title: "PULL — Vercel Deployment Source Extractor",
-    description: "Extract complete source code and assets from any Vercel deployment.",
-    url: "https://github.com/carbonthecoder/PULL",
-    siteName: "PULL",
-    type: "website",
-  },
-};
+import type { Metadata, Viewport } from 'next'
+import './globals.css'
 
 export const viewport: Viewport = {
-  themeColor: "#000000",
-  width: "device-width",
-  initialScale: 1,
-};
+  themeColor: '#000000',
+}
+
+export const metadata: Metadata = {
+  title: 'PULL — Extract Source Code from Vercel Deployments',
+  description: 'Download complete source code and assets from any Vercel deployment with live terminal progress.',
+  openGraph: {
+    title: 'PULL — Extract Source Code from Vercel Deployments',
+    description: 'Download complete source code and assets from any Vercel deployment.',
+    type: 'website',
+  },
+}
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="dark" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                var saved = localStorage.getItem('pull-theme');
+                if (saved === 'light' || saved === 'dark') {
+                  document.documentElement.setAttribute('data-theme', saved);
+                } else {
+                  document.documentElement.setAttribute('data-theme', 'dark');
+                }
+              } catch (e) {}
+            `,
+          }}
+        />
+      </head>
       <body>{children}</body>
     </html>
-  );
+  )
 }
