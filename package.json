@@ -1,0 +1,50 @@
+{
+  "name": "pull",
+  "version": "2.0.0",
+  "description": "PULL — Extract complete source code and assets from any Vercel deployment.",
+  "type": "module",
+  "bin": {
+    "pull": "./dist/tui/cli.js",
+    "catch": "./dist/tui/cli.js"
+  },
+  "scripts": {
+    "dev": "tsx src/tui/cli.tsx",
+    "start": "node dist/tui/cli.js",
+    "web": "tsx src/server.ts",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "lint": "tsc --noEmit",
+    "website:dev": "npm --prefix website run dev",
+    "website:build": "npm --prefix website run build"
+  },
+  "keywords": [
+    "vercel",
+    "download",
+    "source",
+    "deployment",
+    "backup",
+    "cli",
+    "tui",
+    "ink",
+    "terminal"
+  ],
+  "author": "carbonthecoder",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carbonthecoder/PULL.git"
+  },
+  "dependencies": {
+    "ink": "^5.1.0",
+    "react": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.0",
+    "@types/react": "^18.3.12",
+    "tsx": "^4.20.6",
+    "typescript": "^5.6.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
