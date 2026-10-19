@@ -4,6 +4,7 @@ import { Logo } from './components/Logo.js';
 import { InputField } from './components/InputField.js';
 import { DownloadView } from './components/DownloadView.js';
 import { runDownload, type DownloadStats } from '../download.js';
+import { readClipboard } from '../clipboard.js';
 import { join } from 'path';
 
 type AppStatus = 'input' | 'downloading' | 'complete' | 'error';
@@ -273,6 +274,17 @@ export default function App() {
     if (key.delete) {
       if (cursor < value.length) {
         setValue(value.slice(0, cursor) + value.slice(cursor + 1));
+        setFieldError(null);
+      }
+      return;
+    }
+
+    // paste (Ctrl+V, Ctrl+Shift+V, \x16)
+    if (input === '\x16' || (key.ctrl && (input === 'v' || input === 'V' || (key as any).name === 'v'))) {
+      const clip = readClipboard().replace(/[\r\n]/g, '').trim();
+      if (clip) {
+        setValue(value.slice(0, cursor) + clip + value.slice(cursor));
+        setCursor(cursor + clip.length);
         setFieldError(null);
       }
       return;
