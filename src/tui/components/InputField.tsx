@@ -52,7 +52,7 @@ export function InputField({
     `╭─ ${label} ` + '─'.repeat(Math.max(0, innerWidth - label.length - 4)) + '╮';
   const bottomBorder = '╰' + '─'.repeat(innerWidth - 2) + '╯';
 
-  const prompt = '› ';
+  const prompt = '> ';
   const promptLen = prompt.length;
 
   const cursorPos = Math.min(cursorIndex, shown.length);

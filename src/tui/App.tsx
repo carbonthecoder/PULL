@@ -10,7 +10,7 @@ import { join } from 'path';
 type AppStatus = 'input' | 'downloading' | 'complete' | 'error';
 type Field = 'token' | 'deployment';
 
-const SPINNERS = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏'];
+const SPINNERS = ['-', '\\', '|', '/'];
 
 export default function App() {
   const { exit } = useApp();
@@ -313,7 +313,7 @@ export default function App() {
         <Logo width={contentWidth} />
         <Box marginTop={1}>
           <Text color="#f44747" bold>
-            × download failed
+            x download failed
           </Text>
         </Box>
         <Box marginTop={1} width={contentWidth}>
@@ -323,9 +323,9 @@ export default function App() {
         </Box>
         <Box marginTop={2}>
           <Text color="#707070">
-            <Text color="white">↵</Text> try again{' '}
-            <Text color="#555">·</Text>{' '}
-            <Text color="white">^c</Text> quit
+            <Text color="white">[enter]</Text> try again{' '}
+            <Text color="#555">|</Text>{' '}
+            <Text color="white">[ctrl+c]</Text> quit
           </Text>
         </Box>
       </Box>
@@ -413,13 +413,13 @@ export default function App() {
           </Text>
         ) : (
           <Text color="#707070">
-            <Text color="white">↑↓</Text> switch fields{' '}
-            <Text color="#555">·</Text>{' '}
-            <Text color="white">↵</Text> download{' '}
-            <Text color="#555">·</Text>{' '}
-            <Text color="white">esc</Text> clear{' '}
-            <Text color="#555">·</Text>{' '}
-            <Text color="white">^c</Text> quit
+            <Text color="white">[up/down]</Text> switch fields{' '}
+            <Text color="#555">|</Text>{' '}
+            <Text color="white">[enter]</Text> download{' '}
+            <Text color="#555">|</Text>{' '}
+            <Text color="white">[esc]</Text> clear{' '}
+            <Text color="#555">|</Text>{' '}
+            <Text color="white">[ctrl+c]</Text> quit
           </Text>
         )}
       </Box>

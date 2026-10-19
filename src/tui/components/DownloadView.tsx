@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Text } from 'ink';
 import type { DownloadStats } from '../../download.js';
+import { LOGO } from './Logo.js';
 
 interface DownloadViewProps {
   width: number;
@@ -16,18 +17,8 @@ interface DownloadViewProps {
   spinIdx: number;
 }
 
-const SPINNERS = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏'];
+const SPINNERS = ['-', '\\', '|', '/'];
 const ACCENT = '#7f9db5';
-
-const LOGO: string[] = [
-  ' ░███████   ░██     ░██ ░██       ░██      ',
-  ' ░██    ░██ ░██     ░██ ░██       ░██      ',
-  ' ░██    ░██ ░██     ░██ ░██       ░██      ',
-  ' ░███████   ░██     ░██ ░██       ░██      ',
-  ' ░██        ░██     ░██ ░██       ░██      ',
-  ' ░██        ░██     ░██ ░██       ░██      ',
-  ' ░██         ░███████   ░████████ ░████████',
-];
 
 function formatSize(bytes: number): string {
   if (bytes < 1024) return `${bytes} B`;
@@ -42,13 +33,12 @@ function ProgressBar({
   progress: number;
   width: number;
 }) {
-  const filled = Math.round(progress * width);
-  const empty = width - filled;
-  const bar = '█'.repeat(filled) + '░'.repeat(empty);
+  const filled = Math.max(0, Math.min(width, Math.round(progress * width)));
+  const empty = Math.max(0, width - filled);
   return (
     <Text>
-      <Text color={ACCENT}>{bar.slice(0, filled)}</Text>
-      <Text color="#333">{bar.slice(filled)}</Text>
+      <Text color={ACCENT}>{'='.repeat(filled)}</Text>
+      <Text color="#333">{'-'.repeat(empty)}</Text>
     </Text>
   );
 }
@@ -83,7 +73,7 @@ export function DownloadView({
       >
         <Box flexDirection="column" alignItems="center">
           {LOGO.map((line, i) => (
-            <Text key={i} color={ACCENT}>
+            <Text key={i} color={ACCENT} bold>
               {line}
             </Text>
           ))}
@@ -153,13 +143,13 @@ export function DownloadView({
 
         <Box marginTop={1} width={innerWidth} flexDirection="column">
           <Text color="#a0a0a0">
-            {'  '}<Text color="#4ec9b0">↓</Text> caught{'       '}
+            {'  '}<Text color="#4ec9b0">v</Text> caught{'       '}
             <Text color="white" bold>{String(downloaded).padStart(4)}</Text>
             {'    '}
-            <Text color="#dcdcaa">→</Text> skipped{'     '}
+            <Text color="#dcdcaa">&gt;</Text> skipped{'     '}
             <Text color="white" bold>{String(skipped).padStart(4)}</Text>
             {'    '}
-            <Text color="#f44747">×</Text> failed{'      '}
+            <Text color="#f44747">x</Text> failed{'      '}
             <Text color="white" bold>{String(failed).padStart(4)}</Text>
             {'    '}
             <Text color="#707070">of</Text>{' '}
